@@ -1,13 +1,14 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 import { getPostById, getPosts } from '../../services/getPosts';
+import Link from 'next/link'
 
 export async function getStaticPaths({locales, defaultLocale}) {
     let data = [];
     try {
         data = await getPosts();
     } catch (err) {
-        console.error('<====== detail page error =====================>');
+        console.error('<====== posts detail page error =====================>');
     }
     // const res = await fetch('http://localhost:3200/todos');
     // const data = await res.json();
@@ -39,7 +40,7 @@ export async function getStaticProps({params, locale}) {
 
     return {
         props: {data, locale},
-        revalidate: 20
+        revalidate: 60
     }
 }
 
@@ -56,7 +57,13 @@ export default function blogDetail(context) {
     // console.log(router);
 
   return (
+    
     <div className='blog-detail'>
+        <Link href={{
+            pathname: '/',
+        }} as={{
+            pathname: '/',
+        }}>Back </Link>
         <h1>{data.title} - {locale}</h1>
         <p>{data.body}</p>
     </div>

@@ -1,13 +1,14 @@
 import React from 'react'
 import { getTodos, getTodosById } from '../../services/getTodos';
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 export async function getStaticPaths({locales, defaultLocale}) {
     let data = [];
     try {
         data = await getTodos();
     } catch (err) {
-        console.error('<====== detail page error =====================>');
+        console.error('<====== todos detail page error =====================>');
     }
     // const res = await fetch('http://localhost:3200/todos');
     // const data = await res.json();
@@ -39,7 +40,7 @@ export async function getStaticProps({params, locale}) {
 
     return {
         props: {data, locale},
-        revalidate: 20
+        revalidate: 60
     }
 }
 
@@ -54,6 +55,11 @@ export default function blogDetail({data, locale}) {
     }
     return (
     <div className='todos-detail'>
+        <Link href={{
+            pathname: '/',
+        }} as={{
+            pathname: '/',
+        }}>Back </Link>
         <h1>{data.title} - {locale}</h1>
     </div>
   )

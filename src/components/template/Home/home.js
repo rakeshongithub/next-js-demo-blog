@@ -16,7 +16,7 @@ export async function getStaticProps({locale}) {
         postsData,
         locale
       },
-      revalidate: 20
+      revalidate: 60
     }
   } catch (err) {
     console.error("home page error ++++++++++++++++++++> ", err?.message)
@@ -57,7 +57,8 @@ function Home({todosData, locale}) {
                   {/* <Link href={`/todos/${item.id}`}> */}
                   <Link href={{
                     pathname: `/todos/${item.id}`,
-                    // query: { address: `todos-address-${item.id}` },
+                  }} as={{
+                    pathname: `/todos/${item.id}`,
                   }}>
                     <a>{item.title}</a>
                   </Link>
@@ -77,7 +78,8 @@ function Home({todosData, locale}) {
                   {/* <Link href={`/posts/${item.id}?address=my-address-${item.id}`}> */}
                   <Link href={{
                     pathname: `/posts/${item.id}`,
-                    // query: { address: `posts-address-${item.id}` },
+                  }} as={{
+                    pathname: `/posts/${item.id}`,
                   }}>
                     <a>{item.title}</a>
                   </Link>
