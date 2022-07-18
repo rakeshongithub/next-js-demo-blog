@@ -23,7 +23,8 @@ export async function getStaticProps({locale}) {
     return {
       props: {
         notFound: true
-      }
+      },
+      revalidate: 5
     }
   }
 }

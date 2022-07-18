@@ -6,8 +6,8 @@ const nextConfig = {
     BUILD_ENV: process.env.BUILD_ENV
   },
   i18n: {
-    locales: ['en-US', 'es'],
-    defaultLocale: 'en-US',
+    locales: ['en-us', 'es-us'],
+    defaultLocale: 'en-us',
     localeDetection: false
   },
 
@@ -15,6 +15,16 @@ const nextConfig = {
   //   outputStandalone: true
   // },
   // localeBeforeBasePath: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/locations',
+        locale: false,
+        permanent: false,
+      },
+    ]
+  },
   reactStrictMode: true,
 }
 
