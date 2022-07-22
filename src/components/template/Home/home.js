@@ -57,9 +57,7 @@ function Home({todosData, locale}) {
                 <div key={item.id} className='todos-items'>
                   {/* <Link href={`/todos/${item.id}`}> */}
                   <Link href={{
-                    pathname: `/todos/${item.id}`,
-                  }} as={{
-                    pathname: `/todos/${item.id}`,
+                    pathname: `/${locale}/todos/${item.id}`,
                   }}>
                     <a>{item.title}</a>
                   </Link>
@@ -78,10 +76,8 @@ function Home({todosData, locale}) {
                 <div key={item.id} className='blog-items'>
                   {/* <Link href={`/posts/${item.id}?address=my-address-${item.id}`}> */}
                   <Link href={{
-                    pathname: `/posts/${item.id}`,
-                  }} as={{
-                    pathname: `/posts/${item.id}`,
-                  }}>
+                    pathname: `/${locale}/posts/${item.id}`,
+                  }} >
                     <a>{item.title}</a>
                   </Link>
                 </div>

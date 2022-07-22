@@ -33,14 +33,21 @@ export async function getStaticPaths({locales, defaultLocale}) {
     return { paths: pathsWithLocales, fallback: 'blocking' }
 }
 
-export async function getStaticProps({params, locale}) {
-    const data = await getPostById(params.id);
-    // const res = await fetch(`http://localhost:3200/todos/${params.id}`)
-    // const data = await res.json();
+export async function getStaticProps(context) {
+    const {params, locale} = context;
+    try {
+        const data = await getPostById(params.id);
+        // const res = await fetch(`http://localhost:3200/todos/${params.id}`)
+        // const data = await res.json();
 
-    return {
-        props: {data, locale},
-        revalidate: 60
+        return {
+            props: {data, locale},
+            revalidate: 2
+        }
+    } catch (err) {
+        return {
+                notFound: true
+            }
     }
 }
 
