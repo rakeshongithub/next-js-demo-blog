@@ -1,1 +1,1 @@
-export {default, getStaticProps} from '../components/template/Home';
+export { default, getStaticProps } from '../components/template/Home';
