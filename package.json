@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env BUILD_ENV=uat next dev",
+    "dev": "cross-env BUILD_ENV=dev next dev",
     "build": "next build",
     "export": "next export",
     "start": "cross-env BUILD_ENV=prod next build && next start --port=8080",
-    "start:serve": "next build && cross-env BUILD_ENV=production nodemon server.js",
+    "start:serve": "cross-env BUILD_ENV=prod next build && nodemon server.js",
     "analyze": "cross-env BUILD_ENV=prod ANALYZE=true next build",
     "lint": "next lint",
     "format": "yarn lint --fix & yarn prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
