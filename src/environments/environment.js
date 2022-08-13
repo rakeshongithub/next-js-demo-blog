@@ -4,11 +4,13 @@ let environment = {
   baseUrl: 'http://localhost:3200'
 };
 
+let envConfig = { ...environment };
+
 try {
   const configs = process.env.BUILD_ENV
-    ? require(`./environment.${process.env.BUILD_ENV}.js`).default
+    ? require(`./environment.${process.env.BUILD_ENV}.js`).environment
     : {};
-  environment = {
+  envConfig = {
     ...environment,
     ...configs
   };
@@ -16,4 +18,4 @@ try {
   envConfig = environment;
 }
 
-module.exports = environment;
+module.exports = envConfig;
