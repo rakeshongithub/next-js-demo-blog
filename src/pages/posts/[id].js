@@ -2,13 +2,14 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { getPostById, getPosts } from '../../services/getPosts';
 import Link from 'next/link';
+import logger from '../../utils/logger';
 
 export async function getStaticPaths({ locales, defaultLocale }) {
   let data = [];
   try {
     data = await getPosts();
   } catch (err) {
-    console.error('<====== posts detail page error =====================>');
+    logger.error('<====== posts detail page error =====================>');
   }
   // const res = await fetch('http://localhost:3200/todos');
   // const data = await res.json();
@@ -60,7 +61,6 @@ export default function blogDetail(context) {
   if (router.isFallback) {
     return <h1>Loading....</h1>;
   }
-  // console.log(router);
 
   return (
     <div className="blog-detail">

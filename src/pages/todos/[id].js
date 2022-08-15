@@ -2,13 +2,14 @@ import React from 'react';
 import { getTodos, getTodosById } from '../../services/getTodos';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import logger from '../../utils/logger';
 
 export async function getStaticPaths({ locales, defaultLocale }) {
   let data = [];
   try {
     data = await getTodos();
   } catch (err) {
-    console.error('<====== todos detail page error =====================>');
+    logger.error('<====== todos detail page error =====================>');
   }
   // const res = await fetch('http://localhost:3200/todos');
   // const data = await res.json();

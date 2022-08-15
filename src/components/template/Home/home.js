@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getPosts } from '../../../services/getPosts';
 import { getTodos } from '../../../services/getTodos';
+import logger from '../../../utils/logger';
 import styles from './../../../styles/Home.module.css';
 
 export async function getStaticProps({ locale }) {
@@ -19,7 +20,7 @@ export async function getStaticProps({ locale }) {
       revalidate: 60
     };
   } catch (err) {
-    console.error('home page error ++++++++++++++++++++> ', err?.message);
+    logger.error('home page error ++++++++++++++++++++> ', err?.message);
     return {
       props: {
         notFound: true
@@ -32,11 +33,15 @@ export async function getStaticProps({ locale }) {
 function Home({ todosData, locale }) {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    async function fetchData() {
-      const res = await getPosts();
-      setPosts(res);
+    try {
+      async function fetchData() {
+        const res = await getPosts();
+        setPosts(res);
+      }
+      fetchData();
+    } catch (err) {
+      logger.error('Failed to get posts data on client side', err);
     }
-    fetchData();
   }, []);
 
   return (
