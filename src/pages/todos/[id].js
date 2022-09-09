@@ -7,7 +7,7 @@ import logger from '../../utils/logger';
 export async function getStaticPaths({ locales, defaultLocale }) {
   let data = [];
   try {
-    data = await getTodos();
+    data = await getTodos(1);
   } catch (err) {
     logger.error('<====== todos detail page error =====================>');
   }

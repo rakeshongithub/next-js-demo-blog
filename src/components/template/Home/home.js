@@ -9,8 +9,8 @@ import styles from './../../../styles/Home.module.css';
 
 export async function getStaticProps({ locale }) {
   try {
-    const todosData = await getTodos();
-    const postsData = await getPosts();
+    const todosData = await getTodos(1);
+    const postsData = await getPosts(1);
     return {
       props: {
         todosData,
@@ -35,7 +35,7 @@ function Home({ todosData, locale }) {
   useEffect(() => {
     try {
       async function fetchData() {
-        const res = await getPosts();
+        const res = await getPosts(1);
         setPosts(res);
       }
       fetchData();

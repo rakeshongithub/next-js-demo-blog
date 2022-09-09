@@ -2,11 +2,11 @@ import apiClient from '../utils/apiClient';
 import { POSTS_BASE_URL } from '../utils/constants';
 import { error, info } from '../utils/logger';
 
-export const getPosts = async () => {
+export const getPosts = async (limit) => {
   try {
     info(`POSTS: API call to get all posts list triggered ======>`);
     const postData = await apiClient({
-      url: `${POSTS_BASE_URL}?_page=1`,
+      url: `${POSTS_BASE_URL}?_page=1&_limit=${limit}`,
       method: 'GET'
     });
     return postData?.data;
